@@ -1,12 +1,29 @@
-import React, { Component } from 'react';
-import { View, Text, } from 'react-native';
+// Import React and Component
+import React from 'react';
+import {View, Text, SafeAreaView} from 'react-native';
 
-export default class CameraScreen extends Component {
-    render(){
-        return(
-            <View>
-                <Text style={{fontSize:30}}>Camera Screen</Text>
-            </View>
-        );
-    }
-}
+const CameraScreen = () => {
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <View style={{flex: 1, padding: 16}}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text
+            style={{
+              fontSize: 20,
+              textAlign: 'center',
+              marginBottom: 16,
+            }}>
+            This is the Camera Screen
+          </Text>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default CameraScreen;
