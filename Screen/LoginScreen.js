@@ -20,15 +20,21 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Loader from './Components/Loader';
 
 const LoginScreen = ({navigation}) => {
+  const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
 
+  const emailInputRef = createRef();
   const passwordInputRef = createRef();
 
   const handleSubmitPress = () => {
     setErrortext('');
+    if (!userName) {
+      alert('Please fill Username');
+      return;
+    }
     if (!userEmail) {
       alert('Please fill Email');
       return;
@@ -38,7 +44,8 @@ const LoginScreen = ({navigation}) => {
       return;
     }
     setLoading(true);
-    let dataToSend = {email: userEmail, password: userPassword};
+    /*
+    let dataToSend = {username: userName, email: userEmail, password: userPassword};
     let formBody = [];
     for (let key in dataToSend) {
       let encodedKey = encodeURIComponent(key);
@@ -46,15 +53,21 @@ const LoginScreen = ({navigation}) => {
       formBody.push(encodedKey + '=' + encodedValue);
     }
     formBody = formBody.join('&');
+    */
 
     fetch('http://localhost:8000/user/login/', {
       method: 'POST',
-      body: formBody,
+      //body: formBody,
       headers: {
         //Header Defination
-        'Content-Type':
-        'application/x-www-form-urlencoded;charset=UTF-8',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        username: userName,
+        email: userEmail,
+        password: userPassword,
+      })
     })
       .then((response) => response.json())
       .then((responseJson) => {
@@ -104,6 +117,23 @@ const LoginScreen = ({navigation}) => {
             <View style={styles.SectionStyle}>
               <TextInput
                 style={styles.inputStyle}
+                onChangeText={(UserName) =>
+                  setUserName(UserName)
+                }
+                placeholder="Enter Username"
+                placeholderTextColor="#8b9cb5"
+                autoCapitalize="none"
+                returnKeyType="next"
+                onSubmitEditing={() =>
+                  emailInputRef.current && emailInputRef.current.focus()
+                }
+                underlineColorAndroid="#f000"
+                blurOnSubmit={false}
+              />
+            </View>
+            <View style={styles.SectionStyle}>
+              <TextInput
+                style={styles.inputStyle}
                 onChangeText={(UserEmail) =>
                   setUserEmail(UserEmail)
                 }
@@ -111,6 +141,7 @@ const LoginScreen = ({navigation}) => {
                 placeholderTextColor="#8b9cb5"
                 autoCapitalize="none"
                 keyboardType="email-address"
+                ref={emailInputRef}
                 returnKeyType="next"
                 onSubmitEditing={() =>
                   passwordInputRef.current &&

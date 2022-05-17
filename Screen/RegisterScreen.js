@@ -44,11 +44,14 @@ const RegisterScreen = (props) => {
     }
     //Show Loader
     setLoading(true);
+    /*
     var dataToSend = {
       username: userName,
       email: userEmail,
       password: userPassword,
     };
+    */
+    /*
     var formBody = [];
     for (var key in dataToSend) {
       var encodedKey = encodeURIComponent(key);
@@ -56,15 +59,22 @@ const RegisterScreen = (props) => {
       formBody.push(encodedKey + '=' + encodedValue);
     }
     formBody = formBody.join('&');
+    console.log(formBody);
+    */
 
     fetch('http://localhost:8000/user/signup/', {
       method: 'POST',
-      body: formBody,
+      //body: formBody,
       headers: {
         //Header Defination
-        'Content-Type':
-        'application/x-www-form-urlencoded;charset=UTF-8',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        username: userName,
+        email: userEmail,
+        password: userPassword,
+      })
     })
       .then((response) => response.json())
       .then((responseJson) => {
