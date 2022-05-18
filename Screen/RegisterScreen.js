@@ -88,7 +88,7 @@ const RegisterScreen = (props) => {
             'Registration Successful. Please Login to proceed'
           );
         } else {
-          setErrortext(responseJson.msg);
+          setErrortext(responseJson.error);
         }
       })
       .catch((error) => {

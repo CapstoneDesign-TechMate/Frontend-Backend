@@ -21,7 +21,6 @@ import Loader from './Components/Loader';
 
 const LoginScreen = ({navigation}) => {
   const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
@@ -33,10 +32,6 @@ const LoginScreen = ({navigation}) => {
     setErrortext('');
     if (!userName) {
       alert('Please fill Username');
-      return;
-    }
-    if (!userEmail) {
-      alert('Please fill Email');
       return;
     }
     if (!userPassword) {
@@ -65,7 +60,6 @@ const LoginScreen = ({navigation}) => {
       },
       body: JSON.stringify({
         username: userName,
-        email: userEmail,
         password: userPassword,
       })
     })
@@ -76,12 +70,12 @@ const LoginScreen = ({navigation}) => {
         console.log(responseJson);
         // If server response message same as Data Matched
         if (responseJson.status === 'success') {
-          AsyncStorage.setItem('user_id', responseJson.data.email);
-          console.log(responseJson.data.email);
+          //AsyncStorage.setItem('user_id', responseJson.data.email);
+          //console.log(responseJson.data.email);
           navigation.replace('DrawerNavigationRoutes');
         } else {
-          setErrortext(responseJson.msg);
-          console.log('Please check your email id or password');
+          setErrortext(responseJson.error);
+          //console.log('Please check your email id or password');
         }
       })
       .catch((error) => {
@@ -126,26 +120,6 @@ const LoginScreen = ({navigation}) => {
                 returnKeyType="next"
                 onSubmitEditing={() =>
                   emailInputRef.current && emailInputRef.current.focus()
-                }
-                underlineColorAndroid="#f000"
-                blurOnSubmit={false}
-              />
-            </View>
-            <View style={styles.SectionStyle}>
-              <TextInput
-                style={styles.inputStyle}
-                onChangeText={(UserEmail) =>
-                  setUserEmail(UserEmail)
-                }
-                placeholder="Enter Email" //dummy@abc.com
-                placeholderTextColor="#8b9cb5"
-                autoCapitalize="none"
-                keyboardType="email-address"
-                ref={emailInputRef}
-                returnKeyType="next"
-                onSubmitEditing={() =>
-                  passwordInputRef.current &&
-                  passwordInputRef.current.focus()
                 }
                 underlineColorAndroid="#f000"
                 blurOnSubmit={false}
