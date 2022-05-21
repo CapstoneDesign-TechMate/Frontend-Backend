@@ -44,23 +44,6 @@ const RegisterScreen = (props) => {
     }
     //Show Loader
     setLoading(true);
-    /*
-    var dataToSend = {
-      username: userName,
-      email: userEmail,
-      password: userPassword,
-    };
-    */
-    /*
-    var formBody = [];
-    for (var key in dataToSend) {
-      var encodedKey = encodeURIComponent(key);
-      var encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-    formBody = formBody.join('&');
-    console.log(formBody);
-    */
 
     fetch('http://localhost:8000/user/signup/', {
       method: 'POST',
@@ -190,10 +173,7 @@ const RegisterScreen = (props) => {
               ref={passwordInputRef}
               returnKeyType="next"
               secureTextEntry={true}
-              onSubmitEditing={() =>
-                ageInputRef.current &&
-                ageInputRef.current.focus()
-              }
+              onSubmitEditing={Keyboard.dismiss}
               blurOnSubmit={false}
             />
           </View>
