@@ -120,6 +120,7 @@ const RecommendScreenStack = ({navigation}) => {
         options={{
           title: 'Recommend', //Set Header Title
         }}
+
       />
     </Stack.Navigator>
   );
@@ -164,7 +165,7 @@ const DrawerNavigatorRoutes = (props) => {
         },
       }}
       screenOptions={{headerShown: false}}
-      drawerContent={CustomSidebarMenu}>
+      drawerContent={props => <CustomSidebarMenu {...props} />}>
       <Drawer.Screen
         name="homeScreenStack"
         options={{drawerLabel: 'Home Screen'}}

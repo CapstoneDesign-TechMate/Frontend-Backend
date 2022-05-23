@@ -15,11 +15,13 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Loader from './Components/Loader';
 
 const LoginScreen = ({navigation}) => {
+
+
   const [userName, setUserName] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -39,16 +41,6 @@ const LoginScreen = ({navigation}) => {
       return;
     }
     setLoading(true);
-    /*
-    let dataToSend = {username: userName, email: userEmail, password: userPassword};
-    let formBody = [];
-    for (let key in dataToSend) {
-      let encodedKey = encodeURIComponent(key);
-      let encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-    formBody = formBody.join('&');
-    */
 
     fetch('http://localhost:8000/user/login/', {
       method: 'POST',
@@ -70,12 +62,17 @@ const LoginScreen = ({navigation}) => {
         console.log(responseJson);
         // If server response message same as Data Matched
         if (responseJson.status === 'success') {
-          //AsyncStorage.setItem('user_id', responseJson.data.email);
-          //console.log(responseJson.data.email);
-          navigation.replace('DrawerNavigationRoutes');
+          AsyncStorage.setItem(
+            'userData',
+            JSON.stringify({
+                token: responseJson.token,
+                username: userName,
+                password: userPassword
+            })
+          );
+          navigation.replace('DrawerNavigationRoutes', {username:userName, password:userPassword, token:responseJson.token});
         } else {
           setErrortext(responseJson.error);
-          //console.log('Please check your email id or password');
         }
       })
       .catch((error) => {

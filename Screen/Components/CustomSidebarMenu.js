@@ -5,15 +5,52 @@
 import React from 'react';
 import {View, Text, Alert, StyleSheet} from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
 
-import AsyncStorage from '@react-native-community/async-storage';
-
 const CustomSidebarMenu = (props) => {
+  const logout = async() => {
+        const userData = await AsyncStorage.getItem('userData');
+        const profile = JSON.parse(userData);
+
+        fetch('http://localhost:8000/user/logout/', {
+          method: 'POST',
+          headers: {
+            //Header Defination
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: "Token " + profile.token,
+          },
+          body: JSON.stringify({
+            username: profile.username,
+            password: profile.password,
+          })
+        })
+          .then((response) => response.json())
+          .then((responseJson) => {
+            //Hide Loader
+            //setLoading(false);
+            console.log(responseJson);
+            // If server response message same as Data Matched
+            if (responseJson.status === 'success') {
+              AsyncStorage.removeItem('userData');
+              props.navigation.replace('Auth');
+            } else {
+              setErrortext(responseJson.error);
+            }
+          })
+          .catch((error) => {
+            //Hide Loader
+            setLoading(false);
+            console.error(error);
+          });
+  }
+
   return (
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
@@ -30,29 +67,10 @@ const CustomSidebarMenu = (props) => {
         <DrawerItemList {...props} />
         <DrawerItem
           label={({color}) => <Text style={{color: '#d8d8d8'}}>Logout</Text>}
-          onPress={() => {
-            props.navigation.toggleDrawer();
-            Alert.alert(
-              'Logout',
-              'Are you sure? You want to logout?',
-              [
-                {
-                  text: 'Cancel',
-                  onPress: () => {
-                    return null;
-                  },
-                },
-                {
-                  text: 'Confirm',
-                  onPress: () => {
-                    AsyncStorage.clear();
-                    props.navigation.replace('Auth');
-                  },
-                },
-              ],
-              {cancelable: false},
-            );
-          }}
+          onPress={
+            //props.navigation.toggleDrawer();
+            logout
+          }
         />
       </DrawerContentScrollView>
     </View>

@@ -3,17 +3,30 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import {launchCamera, launchImageLibrary } from 'react-native-image-picker'
 
 class CameraScreen extends Component {
+  send
+
   state = {
     avatar: ''
   }
 
   showImage = () => {
-    launchImageLibrary({}, (response)=>{
-      alert(response.assets[0].uri)
-      this.setState({
-        avatar: response.assets[0].uri
-      })
-    })
+        launchImageLibrary({}, (response) => {
+            console.log('Response = ', response);
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+                alert('User cancelled image picker');
+            }
+            else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+                alert('ImagePicker Error: ' + response.error);
+            }
+            else {
+                let source = response;
+                this.setState({
+                    avatar: response.assets[0].uri
+                });
+            }
+        });
   }
 
   render() {
@@ -26,7 +39,10 @@ class CameraScreen extends Component {
         <TouchableOpacity
           style={styles.buttonStyle}
           activeOpacity={0.5}
-          onPress={() => {this.showImage()}}
+          onPress={() => {
+            this.showImage()}
+
+          }
         >
           <Text style={styles.buttonTextStyle}>영수증 등록하기</Text>
         </TouchableOpacity>
