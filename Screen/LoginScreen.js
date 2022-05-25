@@ -151,9 +151,9 @@ const LoginScreen = ({navigation}) => {
               <Text style={styles.buttonTextStyle}>LOGIN</Text>
             </TouchableOpacity>
             <Text
-              style={styles.registerTextStyle}
+              style={styles.signupTextStyle}
               onPress={() => navigation.navigate('RegisterScreen')}>
-              New Here ? Register
+              New Here ? Signup
             </Text>
           </KeyboardAvoidingView>
         </View>
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderColor: '#dadae8',
   },
-  registerTextStyle: {
+  signupTextStyle: {
     color: '#FFFFFF',
     textAlign: 'center',
     fontWeight: 'bold',

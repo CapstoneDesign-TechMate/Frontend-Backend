@@ -21,8 +21,8 @@ const RegisterScreen = (props) => {
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
   const [
-    isRegistraionSuccess,
-    setIsRegistraionSuccess
+    isRegisterSuccess,
+    setIsRegisterSuccess
   ] = useState(false);
 
   const emailInputRef = createRef();
@@ -66,7 +66,7 @@ const RegisterScreen = (props) => {
         console.log(responseJson);
         // If server response message same as Data Matched
         if (responseJson.status === 'success') {
-          setIsRegistraionSuccess(true);
+          setIsSignupSuccess(true);
           console.log(
             'Registration Successful. Please Login to proceed'
           );
@@ -80,7 +80,7 @@ const RegisterScreen = (props) => {
         console.error(error);
       });
   };
-  if (isRegistraionSuccess) {
+  if (isSignupSuccess) {
     return (
       <View
         style={{

@@ -1,15 +1,20 @@
 import React, {Component} from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import {launchCamera, launchImageLibrary } from 'react-native-image-picker'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class CameraScreen extends Component {
-  send
+  //send image to server
+
 
   state = {
     avatar: ''
   }
 
-  showImage = () => {
+  showImage = async () => {
+        const userData = await AsyncStorage.getItem('userData');
+        const profile = JSON.parse(userData);
+
         launchImageLibrary({}, (response) => {
             console.log('Response = ', response);
             if (response.didCancel) {
@@ -21,10 +26,35 @@ class CameraScreen extends Component {
                 alert('ImagePicker Error: ' + response.error);
             }
             else {
+                alert(response.assets[0])
                 let source = response;
                 this.setState({
                     avatar: response.assets[0].uri
                 });
+
+                const fd = new FormData();
+                fd.append('receipt', {
+                    kim: "kim,m,m",
+                    name: response.assets[0].fileName,
+                    uri: response.assets[0].uri,
+                    type: response.assets[0].type,
+                });
+
+                fetch('http://localhost:8000/user/check/', {
+                    body: fd,
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'multipart/form-data',
+                       Authorization: "Token " + profile.token,
+                    },
+                })
+                  .then(res => {
+
+                  })
+                  .catch(error => {
+
+                  });
+
             }
         });
   }
@@ -40,8 +70,8 @@ class CameraScreen extends Component {
           style={styles.buttonStyle}
           activeOpacity={0.5}
           onPress={() => {
-            this.showImage()}
-
+                this.showImage()
+            }
           }
         >
           <Text style={styles.buttonTextStyle}>영수증 등록하기</Text>

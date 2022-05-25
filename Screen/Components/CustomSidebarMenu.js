@@ -51,11 +51,15 @@ const CustomSidebarMenu = (props) => {
           });
   }
 
+  //const userData = await AsyncStorage.getItem('userData');
+  //const profile = JSON.parse(userData);
+
   return (
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
         <View style={stylesSidebar.profileHeaderPicCircle}>
           <Text style={{fontSize: 25, color: '#307ecc'}}>
+            //"Hi, " + profile.username
             {'About React'.charAt(0)}
           </Text>
         </View>
@@ -68,7 +72,7 @@ const CustomSidebarMenu = (props) => {
         <DrawerItem
           label={({color}) => <Text style={{color: '#d8d8d8'}}>Logout</Text>}
           onPress={
-            //props.navigation.toggleDrawer();
+            //props.navigation.toggleDrawer(),
             logout
           }
         />
