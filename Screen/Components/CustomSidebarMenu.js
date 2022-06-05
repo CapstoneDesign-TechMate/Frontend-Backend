@@ -14,6 +14,9 @@ import {
 } from '@react-navigation/drawer';
 
 const CustomSidebarMenu = (props) => {
+
+  //get_user();
+
   const logout = async() => {
         const userData = await AsyncStorage.getItem('userData');
         const profile = JSON.parse(userData);
@@ -51,19 +54,15 @@ const CustomSidebarMenu = (props) => {
           });
   }
 
-  //const userData = await AsyncStorage.getItem('userData');
-  //const profile = JSON.parse(userData);
-
   return (
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
         <View style={stylesSidebar.profileHeaderPicCircle}>
           <Text style={{fontSize: 25, color: '#307ecc'}}>
-            //"Hi, " + profile.username
-            {'About React'.charAt(0)}
+            {'user'.charAt(0)}
           </Text>
         </View>
-        <Text style={stylesSidebar.profileHeaderText}>AboutReact</Text>
+        <Text style={stylesSidebar.profileHeaderText}>Hi, </Text>
       </View>
       <View style={stylesSidebar.profileHeaderLine} />
 

@@ -50,7 +50,7 @@ const RegisterScreen = (props) => {
       //body: formBody,
       headers: {
         //Header Defination
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -66,7 +66,7 @@ const RegisterScreen = (props) => {
         console.log(responseJson);
         // If server response message same as Data Matched
         if (responseJson.status === 'success') {
-          setIsSignupSuccess(true);
+          setIsRegisterSuccess(true);
           console.log(
             'Registration Successful. Please Login to proceed'
           );
@@ -80,7 +80,7 @@ const RegisterScreen = (props) => {
         console.error(error);
       });
   };
-  if (isSignupSuccess) {
+  if (isRegisterSuccess) {
     return (
       <View
         style={{

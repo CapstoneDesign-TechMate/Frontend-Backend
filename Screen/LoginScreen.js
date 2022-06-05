@@ -47,7 +47,7 @@ const LoginScreen = ({navigation}) => {
       //body: formBody,
       headers: {
         //Header Defination
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -130,6 +130,7 @@ const LoginScreen = ({navigation}) => {
                 }
                 placeholder="Enter Password" //12345
                 placeholderTextColor="#8b9cb5"
+                autoCapitalize="none"
                 keyboardType="default"
                 ref={passwordInputRef}
                 onSubmitEditing={Keyboard.dismiss}
