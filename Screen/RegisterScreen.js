@@ -45,7 +45,8 @@ const RegisterScreen = (props) => {
     //Show Loader
     setLoading(true);
 
-    fetch('http://localhost:8000/user/signup/', {
+    fetch('http://13.209.105.69:8001/user/signup/', {
+    //fetch('http://localhost:8000/user/signup/', {
       method: 'POST',
       //body: formBody,
       headers: {
@@ -85,7 +86,7 @@ const RegisterScreen = (props) => {
       <View
         style={{
           flex: 1,
-          backgroundColor: '#307ecc',
+          backgroundColor: '#B9A2FA',
           justifyContent: 'center',
         }}>
         <Image
@@ -109,7 +110,7 @@ const RegisterScreen = (props) => {
     );
   }
   return (
-    <View style={{flex: 1, backgroundColor: '#307ecc'}}>
+    <View style={{flex: 1, backgroundColor: '#B9A2FA'}}>
       <Loader loading={loading} />
       <ScrollView
         keyboardShouldPersistTaps="handled"
@@ -205,10 +206,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: '#7DE24E',
+    backgroundColor: '#8E66FF',
     borderWidth: 0,
     color: '#FFFFFF',
-    borderColor: '#7DE24E',
+    borderColor: '#8E66FF',
     height: 40,
     alignItems: 'center',
     borderRadius: 30,

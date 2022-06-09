@@ -3,7 +3,7 @@
 
 // Import React and Component
 import React from 'react';
-import {View, Text, Alert, StyleSheet} from 'react-native';
+import {View, Text, Alert, StyleSheet, Image} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -14,14 +14,12 @@ import {
 } from '@react-navigation/drawer';
 
 const CustomSidebarMenu = (props) => {
-
-  //get_user();
-
   const logout = async() => {
         const userData = await AsyncStorage.getItem('userData');
         const profile = JSON.parse(userData);
 
-        fetch('http://localhost:8000/user/logout/', {
+        fetch('http://13.209.105.69:8001/user/logout/', {
+        //fetch('http://localhost:8000/user/logout/', {
           method: 'POST',
           headers: {
             //Header Defination
@@ -58,11 +56,18 @@ const CustomSidebarMenu = (props) => {
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
         <View style={stylesSidebar.profileHeaderPicCircle}>
-          <Text style={{fontSize: 25, color: '#307ecc'}}>
-            {'user'.charAt(0)}
-          </Text>
+            <Image
+                source={require('../../Image/profile.png')}
+                style={{
+                  width: 40,
+                  height: 40,
+                  //resizeMode: 'contain',
+                  borderRadius: 20,
+                  margin: 30,
+                }}
+            />
         </View>
-        <Text style={stylesSidebar.profileHeaderText}>Hi, </Text>
+        <Text style={stylesSidebar.profileHeaderText}> Welcome, Scarlett</Text>
       </View>
       <View style={stylesSidebar.profileHeaderLine} />
 
@@ -86,20 +91,20 @@ const stylesSidebar = StyleSheet.create({
   sideMenuContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#A486FA',
     paddingTop: 40,
     color: 'white',
   },
   profileHeader: {
     flexDirection: 'row',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#7F54FB',
     padding: 15,
     textAlign: 'center',
   },
   profileHeaderPicCircle: {
-    width: 60,
-    height: 60,
-    borderRadius: 60 / 2,
+    width: 40,
+    height: 40,
+    borderRadius: 40 / 2,
     color: 'white',
     backgroundColor: '#ffffff',
     textAlign: 'center',

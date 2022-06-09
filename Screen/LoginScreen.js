@@ -20,8 +20,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from './Components/Loader';
 
 const LoginScreen = ({navigation}) => {
-
-
   const [userName, setUserName] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -42,7 +40,8 @@ const LoginScreen = ({navigation}) => {
     }
     setLoading(true);
 
-    fetch('http://localhost:8000/user/login/', {
+    fetch('http://13.209.105.69:8001/user/login/', {
+    //fetch('http://localhost:8000/user/login/', {
       method: 'POST',
       //body: formBody,
       headers: {
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#B9A2FA',
     alignContent: 'center',
   },
   SectionStyle: {
@@ -180,10 +179,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: '#7DE24E',
+    backgroundColor: '#8E66FF',
     borderWidth: 0,
     color: '#FFFFFF',
-    borderColor: '#7DE24E',
+    borderColor: '#8E66FF',
     height: 40,
     alignItems: 'center',
     borderRadius: 30,

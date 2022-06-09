@@ -32,7 +32,7 @@ const HomeScreenStack = ({navigation}) => {
             <NavigationDrawerHeader navigationProps={navigation} />
           ),
           headerStyle: {
-            backgroundColor: '#307ecc', //Set Header color
+            backgroundColor: '#8E66FF', //Set Header color
           },
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
@@ -53,7 +53,7 @@ const CameraScreenStack = ({navigation}) => {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: '#307ecc', //Set Header color
+          backgroundColor: '#8E66FF', //Set Header color
         },
         headerTintColor: '#fff', //Set Header text color
         headerTitleStyle: {
@@ -64,7 +64,7 @@ const CameraScreenStack = ({navigation}) => {
         name="CameraScreen"
         component={CameraScreen}
         options={{
-          title: 'Camera', //Set Header Title
+          title: '영수증', //Set Header Title
         }}
       />
     </Stack.Navigator>
@@ -80,7 +80,7 @@ const LedgerScreenStack = ({navigation}) => {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: '#307ecc', //Set Header color
+          backgroundColor: '#8E66FF', //Set Header color
         },
         headerTintColor: '#fff', //Set Header text color
         headerTitleStyle: {
@@ -91,7 +91,7 @@ const LedgerScreenStack = ({navigation}) => {
         name="LedgerScreen"
         component={LedgerScreen}
         options={{
-          title: 'Ledger', //Set Header Title
+          title: '가계부', //Set Header Title
         }}
       />
     </Stack.Navigator>
@@ -107,7 +107,7 @@ const RecommendScreenStack = ({navigation}) => {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: '#307ecc', //Set Header color
+          backgroundColor: '#8E66FF', //Set Header color
         },
         headerTintColor: '#fff', //Set Header text color
         headerTitleStyle: {
@@ -116,9 +116,9 @@ const RecommendScreenStack = ({navigation}) => {
       }}>
       <Stack.Screen
         name="RecommendScreen"
-        component={SettingsScreen}
+        component={RecommendScreen}
         options={{
-          title: 'Recommend', //Set Header Title
+          title: '추천', //Set Header Title
         }}
 
       />
@@ -135,7 +135,7 @@ const SettingScreenStack = ({navigation}) => {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: '#307ecc', //Set Header color
+          backgroundColor: '#8E66FF', //Set Header color
         },
         headerTintColor: '#fff', //Set Header text color
         headerTitleStyle: {
@@ -146,7 +146,7 @@ const SettingScreenStack = ({navigation}) => {
         name="SettingsScreen"
         component={SettingsScreen}
         options={{
-          title: 'Settings', //Set Header Title
+          title: '설정', //Set Header Title
         }}
       />
     </Stack.Navigator>
@@ -157,38 +157,38 @@ const DrawerNavigatorRoutes = (props) => {
   return (
     <Drawer.Navigator
       drawerContentOptions={{
-        activeTintColor: '#cee1f2',
-        color: '#cee1f2',
+        activeTintColor: '#8E66FF',
+        color: '#8E66FF',
         itemStyle: {marginVertical: 5, color: 'white'},
         labelStyle: {
-          color: '#d8d8d8',
+          color: '#8E66FF',
         },
       }}
       screenOptions={{headerShown: false}}
       drawerContent={props => <CustomSidebarMenu {...props} />}>
       <Drawer.Screen
         name="homeScreenStack"
-        options={{drawerLabel: 'Home Screen'}}
+        options={{drawerLabel: 'Home'}}
         component={HomeScreenStack}
       />
       <Drawer.Screen
         name="cameraScreenStack"
-        options={{drawerLabel: 'Camera Screen'}}
+        options={{drawerLabel: '영수증'}}
         component={CameraScreenStack}
       />
       <Drawer.Screen
         name="ledgerScreenStack"
-        options={{drawerLabel: 'Ledger Screen'}}
+        options={{drawerLabel: '가계부'}}
         component={LedgerScreenStack}
       />
       <Drawer.Screen
          name="recommendScreenStack"
-         options={{drawerLabel: 'Recommend Screen'}}
+         options={{drawerLabel: '추천'}}
          component={RecommendScreenStack}
       />
       <Drawer.Screen
         name="settingScreenStack"
-        options={{drawerLabel: 'Setting Screen'}}
+        options={{drawerLabel: '설정'}}
         component={SettingScreenStack}
       />
     </Drawer.Navigator>

@@ -27,7 +27,12 @@ const SplashScreen = ({navigation}) => {
     <View style={styles.container}>
       <Image
         source={require('../Image/techmate.png')}
-        style={{width: '90%', resizeMode: 'contain', margin: 30}}
+        style={{
+            width: '50%',
+            height: 100,
+            resizeMode: 'contain',
+            margin: 30,
+        }}
       />
       <ActivityIndicator
         animating={animating}
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#B9A2FA',
   },
   activityIndicator: {
     alignItems: 'center',
