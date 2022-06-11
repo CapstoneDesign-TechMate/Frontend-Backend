@@ -67,7 +67,7 @@ const CustomSidebarMenu = (props) => {
                 }}
             />
         </View>
-        <Text style={stylesSidebar.profileHeaderText}> Welcome, Scarlett</Text>
+        <Text style={stylesSidebar.profileHeaderText}> Hi, Jinwoo</Text>
       </View>
       <View style={stylesSidebar.profileHeaderLine} />
 

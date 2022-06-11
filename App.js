@@ -28,9 +28,9 @@ const Auth = () => {
         name="RegisterScreen"
         component={RegisterScreen}
         options={{
-          title: 'Signup', //Set Header Title
+          title: '', //Set Header Title
           headerStyle: {
-            backgroundColor: '#307ecc', //Set Header color
+            backgroundColor: '#9794FF', //Set Header color
           },
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {

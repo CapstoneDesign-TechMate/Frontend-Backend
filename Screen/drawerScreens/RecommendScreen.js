@@ -49,7 +49,7 @@
     render() {
         return (
          <SafeAreaView style={{flex: 1}}>
-           <View style={{flex: 1, padding: 16}}>
+           <View style={{flex: 1, padding: 16, alignItems: 'center'}}>
                 <TouchableOpacity
                    activeOpacity={0.5}
                    onPress={() => {
@@ -58,12 +58,14 @@
                 >
                   <Text style={styles.text}>{this.state.username}님을 위한 오늘의 장소</Text>
                 </TouchableOpacity>
+                <View style={{marginRight: 100}}>
+                  <Text style={styles.nametext}>{this.state.name}</Text>
+                  <Text style={styles.infotext}>{this.state.address}</Text>
+                </View>
                 <Image
                     source = {{uri:this.state.img_uri}}
                     style={styles.avatar}
                 />
-                <Text>{this.state.name}</Text>
-                <Text>{this.state.address}</Text>
            </View>
          </SafeAreaView>
         );
@@ -74,26 +76,28 @@
 
 const styles = StyleSheet.create({
   avatar: {
-    width: '100%',
-    height: 400
+    width: 300,
+    height: 350,
+    alignItems: 'center',
+    borderRadius: 10
   },
   text: {
     textAlign: 'center',
     fontSize: 16,
     padding: 5,
     margin: 10,
+    color: 'black',
+    marginBottom: 40
+  },
+  nametext: {
+    fontSize: 12,
+    padding: 1,
+    margin: 1,
+    color: 'black',
+  },
+  infotext: {
+    fontSize: 10,
+    padding: 1,
+    margin: 1,
   }
 })
-
-/*
-<TouchableOpacity
-                   activeOpacity={0.5}
-                   onPress={() => {
-                       this.get_reco()
-                   }}
-                >
-                  <Text style={styles.text}>{this.state.username}을 위한 오늘의 장소 추천</Text>
-                </TouchableOpacity>
-
-
-                */

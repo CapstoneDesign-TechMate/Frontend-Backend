@@ -27,14 +27,14 @@ const HomeScreenStack = ({navigation}) => {
         name="HomeScreen"
         component={HomeScreen}
         options={{
-          title: 'Home', //Set Header Title
+          title: '', //Set Header Title
           headerLeft: () => (
             <NavigationDrawerHeader navigationProps={navigation} />
           ),
           headerStyle: {
-            backgroundColor: '#8E66FF', //Set Header color
+            backgroundColor: '#9794FF', //Set Header color
           },
-          headerTintColor: '#fff', //Set Header text color
+          headerTintColor: '#FFF', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
           },
@@ -53,7 +53,7 @@ const CameraScreenStack = ({navigation}) => {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: '#8E66FF', //Set Header color
+          backgroundColor: '#9794FF', //Set Header color
         },
         headerTintColor: '#fff', //Set Header text color
         headerTitleStyle: {
@@ -64,7 +64,7 @@ const CameraScreenStack = ({navigation}) => {
         name="CameraScreen"
         component={CameraScreen}
         options={{
-          title: '영수증', //Set Header Title
+          title: '', //Set Header Title
         }}
       />
     </Stack.Navigator>
@@ -80,7 +80,7 @@ const LedgerScreenStack = ({navigation}) => {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: '#8E66FF', //Set Header color
+          backgroundColor: '#9794FF', //Set Header color
         },
         headerTintColor: '#fff', //Set Header text color
         headerTitleStyle: {
@@ -91,7 +91,7 @@ const LedgerScreenStack = ({navigation}) => {
         name="LedgerScreen"
         component={LedgerScreen}
         options={{
-          title: '가계부', //Set Header Title
+          title: '', //Set Header Title
         }}
       />
     </Stack.Navigator>
@@ -107,7 +107,7 @@ const RecommendScreenStack = ({navigation}) => {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: '#8E66FF', //Set Header color
+          backgroundColor: '#9794FF', //Set Header color
         },
         headerTintColor: '#fff', //Set Header text color
         headerTitleStyle: {
@@ -118,7 +118,7 @@ const RecommendScreenStack = ({navigation}) => {
         name="RecommendScreen"
         component={RecommendScreen}
         options={{
-          title: '추천', //Set Header Title
+          title: '', //Set Header Title
         }}
 
       />
@@ -135,7 +135,7 @@ const SettingScreenStack = ({navigation}) => {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: '#8E66FF', //Set Header color
+          backgroundColor: '#9794FF', //Set Header color
         },
         headerTintColor: '#fff', //Set Header text color
         headerTitleStyle: {
@@ -146,7 +146,7 @@ const SettingScreenStack = ({navigation}) => {
         name="SettingsScreen"
         component={SettingsScreen}
         options={{
-          title: '설정', //Set Header Title
+          title: '', //Set Header Title
         }}
       />
     </Stack.Navigator>
@@ -157,8 +157,8 @@ const DrawerNavigatorRoutes = (props) => {
   return (
     <Drawer.Navigator
       drawerContentOptions={{
-        activeTintColor: '#8E66FF',
-        color: '#8E66FF',
+        activeTintColor: '#9794FF',
+        color: '#9794FF',
         itemStyle: {marginVertical: 5, color: 'white'},
         labelStyle: {
           color: '#8E66FF',

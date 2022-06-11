@@ -13,7 +13,7 @@ class CameraScreen extends Component {
     const userData = await AsyncStorage.getItem('userData');
     const profile = JSON.parse(userData);
 
-    alert(JSON.stringify(data));
+    //alert(JSON.stringify(data));
     //모달 창에 스크롤뷰로 text input 넣고 사용자가 수정, 빈 거 채워넣기
     //수정ㅇ
 
@@ -115,7 +115,7 @@ class CameraScreen extends Component {
             }
           }
         >
-          <Text style={styles.buttonTextStyle}>영수증 등록하기</Text>
+          <Text style={styles.buttonTextStyle}>영수증 등록</Text>
         </TouchableOpacity>
       </View>
     )
@@ -124,13 +124,11 @@ class CameraScreen extends Component {
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    backgroundColor: '#8E66FF',
     borderWidth: 0,
     color: '#FFFFFF',
     borderColor: '#8E66FF',
     height: 40,
     alignItems: 'center',
-    borderRadius: 10,
     marginLeft: 35,
     marginRight: 35,
     marginTop: 20,
@@ -138,7 +136,7 @@ const styles = StyleSheet.create({
   },
 
   buttonTextStyle: {
-    color: '#FFFFFF',
+    color: '#8E66FF',
     paddingVertical: 8,
     fontSize: 16,
   },
@@ -150,7 +148,7 @@ const styles = StyleSheet.create({
   },
 
   avatar: {
-    width: '100%',
+    width: '80%',
     height: 400
   }
 })
