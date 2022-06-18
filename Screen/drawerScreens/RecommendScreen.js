@@ -2,6 +2,7 @@
  import React, {useState, useEffect, Component} from 'react';
  import {StyleSheet, View, Text, SafeAreaView, Image, Button, TouchableOpacity} from 'react-native';
  import AsyncStorage from '@react-native-async-storage/async-storage';
+ import Geolocation from '@react-native-community/geolocation';
 
  class RecommendScreen extends Component{
    state = {
@@ -9,6 +10,8 @@
      name: '',
      address: '',
      username: '',
+     la: 0,
+     lo: 0,
    }
 
    get_reco = async() => {
@@ -17,14 +20,34 @@
        this.setState({
          username: profile.username
        })
-       console.log(this.state.username)
+
+       Geolocation.getCurrentPosition(
+            position => {
+                const latitude = JSON.stringify(position.coords.latitude);
+                const longitude = JSON.stringify(position.coords.longitude);
+
+                this.setState({
+                    la: latitude,
+                    lo: longitude,
+                })
+                console.log(latitude)
+                console.log(longitude)
+            },
+            error => { console.log(error.code, error.message); },
+            {enableHighAccuracy:false, timeout: 15000, /*maximumAge: 10000*/ },
+       )
+
        fetch('http://13.209.105.69:8001/user/reco/', {
        //fetch('http://localhost:8000/user/date/', {
-         method: 'GET',
+         method: 'POST',
          headers: {
            'Content-Type': 'application/json',
            Authorization: "Token " + profile.token,
          },
+         body: JSON.stringify({
+            la: this.state.la,
+            lo: this.state.lo,
+         })
        })
        .then((response) => response.json())
        .then((responseJson) => {
@@ -43,7 +66,6 @@
        .catch((error) => {
            console.error(error);
        });
-
    }
 
     render() {
@@ -58,7 +80,7 @@
                 >
                   <Text style={styles.text}>{this.state.username}님을 위한 오늘의 장소</Text>
                 </TouchableOpacity>
-                <View style={{marginRight: 100}}>
+                <View style={{marginRight: 180}}>
                   <Text style={styles.nametext}>{this.state.name}</Text>
                   <Text style={styles.infotext}>{this.state.address}</Text>
                 </View>
