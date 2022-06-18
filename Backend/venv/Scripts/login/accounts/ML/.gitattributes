@@ -1,0 +1,2 @@
+cc.ko.300.bin filter=lfs diff=lfs merge=lfs -text
+메뉴정보_괄호제거.csv filter=lfs diff=lfs merge=lfs -text
